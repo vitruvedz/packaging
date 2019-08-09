@@ -1,0 +1,34 @@
+name: 3dcoin
+version: 0.14.5.1
+summary:   peer-to-peer network based digital currency
+description: |
+  3dcoin is a free open source peer-to-peer electronic cash system that
+  is completely decentralized, without the need for a central server or
+  trusted parties.  Users hold the crypto keys to their own money and
+  transact directly with each other, with the help of a P2P network to
+  check for double-spending.
+grade: stable
+confinement: strict
+
+apps:
+  daemon:
+    command: 3dcoind
+  qt:
+    command: 3dcoin-qt
+  cli:
+    command: 3dcoin-cli
+
+parts:
+  3dcoin:
+    plugin: nil
+    override-build: | 
+      env | grep SNAP
+      wget https://github.com/BlockchainTechLLC/3dcoin/releases/download/v${SNAPCRAFT_PROJECT_VERSION}/3dcoin-${SNAPCRAFT_ARCH_TRIPLET}-${SNAPCRAFT_PROJECT_VERSION}.tar.gz
+      tar -xvf 3dcoin-${SNAPCRAFT_ARCH_TRIPLET}-${SNAPCRAFT_PROJECT_VERSION}.tar.gz
+      install -m 0755 -D -t $SNAPCRAFT_PART_INSTALL/bin 3dcoin-${SNAPCRAFT_ARCH_TRIPLET}-${SNAPCRAFT_PROJECT_VERSION}/bin/3dcoind
+      install -m 0755 -D -t $SNAPCRAFT_PART_INSTALL/bin 3dcoin-${SNAPCRAFT_ARCH_TRIPLET}-${SNAPCRAFT_PROJECT_VERSION}/bin/3dcoin-qt
+      install -m 0755 -D -t $SNAPCRAFT_PART_INSTALL/bin 3dcoin-${SNAPCRAFT_ARCH_TRIPLET}-${SNAPCRAFT_PROJECT_VERSION}/bin/3dcoin-cli
+    build-packages:
+      - wget
+    after:
+      - desktop-qt5
