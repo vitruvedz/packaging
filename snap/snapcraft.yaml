@@ -10,23 +10,6 @@ description: |
 grade: stable
 confinement: strict
 
-apps:
-  3dcoind:
-    command: 3dcoind
-    plugs: [network, network-bind]
-    environment:
-      HOME: $SNAP_USER_COMMON
-  3dcoin-qt:
-    command: 3dcoin-qt
-    plugs: [network, network-bind, desktop, x11]
-    environment:
-      HOME: $SNAP_USER_COMMON
-  3dcoin-cli:
-    command: 3dcoin-cli
-    plugs: [network]
-    environment:
-      HOME: $SNAP_USER_COMMON
-
 parts:
   3dcoin:
     plugin: nil
