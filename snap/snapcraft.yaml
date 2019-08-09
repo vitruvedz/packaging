@@ -7,9 +7,17 @@ description: |
   trusted parties.  Users hold the crypto keys to their own money and
   transact directly with each other, with the help of a P2P network to
   check for double-spending.
-grade: stable
-confinement: strict
+adopt-info: 3dcoin
+confinement: classic
 
+apps:
+  3dcoind:
+    command: bin/3dcoind
+  3dcoin-cli:
+    command: bin/3dcoin-cli
+  3dcoin-qt:
+    command: bin/3dcoin-qt
+    
 parts:
   3dcoin:
     plugin: nil
@@ -17,9 +25,9 @@ parts:
       env | grep SNAP
       wget https://github.com/BlockchainTechLLC/3dcoin/releases/download/v${SNAPCRAFT_PROJECT_VERSION}/3dcoin-${SNAPCRAFT_ARCH_TRIPLET}-${SNAPCRAFT_PROJECT_VERSION}.tar.gz
       tar -xvf 3dcoin-${SNAPCRAFT_ARCH_TRIPLET}-${SNAPCRAFT_PROJECT_VERSION}.tar.gz
-      install -m 0755 -D -t $SNAPCRAFT_PART_INSTALL/bin 3dcoin-${SNAPCRAFT_ARCH_TRIPLET}-${SNAPCRAFT_PROJECT_VERSION}/bin/3dcoind
-      install -m 0755 -D -t $SNAPCRAFT_PART_INSTALL/bin 3dcoin-${SNAPCRAFT_ARCH_TRIPLET}-${SNAPCRAFT_PROJECT_VERSION}/bin/3dcoin-qt
-      install -m 0755 -D -t $SNAPCRAFT_PART_INSTALL/bin 3dcoin-${SNAPCRAFT_ARCH_TRIPLET}-${SNAPCRAFT_PROJECT_VERSION}/bin/3dcoin-cli
+      install -m 0755 -D -t 3dcoin-${SNAPCRAFT_ARCH_TRIPLET}-${SNAPCRAFT_PROJECT_VERSION}/bin/3dcoind
+      install -m 0755 -D -t 3dcoin-${SNAPCRAFT_ARCH_TRIPLET}-${SNAPCRAFT_PROJECT_VERSION}/bin/3dcoin-qt
+      install -m 0755 -D -t 3dcoin-${SNAPCRAFT_ARCH_TRIPLET}-${SNAPCRAFT_PROJECT_VERSION}/bin/3dcoin-cli
     build-packages:
       - wget
     after:
