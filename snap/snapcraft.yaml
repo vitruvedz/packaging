@@ -10,12 +10,17 @@ grade: devel
 confinement: devmode
 
 apps:
-  3dcoind:
-    command: bin/3dcoind
-  3dcoin-cli:
-    command: bin/3dcoin-cli
-  3dcoin-qt:
-    command: bin/3dcoin-qt
+  daemon:
+    command: 3dcoind
+    plugs: [network, network-bind]
+    environment:
+      HOME: $SNAP_USER_COMMON
+  cli:
+    command: 3dcoin-cli
+    plugs: [network]
+    environment:
+      HOME: $SNAP_USER_COMMON
+
     
 parts:
   3dcoin:
@@ -29,5 +34,3 @@ parts:
       install -m 0755 -D -t 3dcoin-x86_64-pc-linux-gnu-0.14.5.1/bin/3dcoin-cli
     build-packages:
       - wget
-    after:
-      - desktop-qt5
