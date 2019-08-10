@@ -7,8 +7,8 @@ description: |
   trusted parties.  Users hold the crypto keys to their own money and
   transact directly with each other, with the help of a P2P network to
   check for double-spending.
-adopt-info: 3dcoin
-confinement: classic
+grade: devel
+confinement: devmode
 
 apps:
   3dcoind:
