@@ -22,11 +22,11 @@ parts:
     plugin: nil
     override-build: | 
       env | grep SNAP
-      wget https://github.com/BlockchainTechLLC/3dcoin/releases/download/v${SNAPCRAFT_PROJECT_VERSION}/3dcoin-${SNAPCRAFT_ARCH_TRIPLET}-${SNAPCRAFT_PROJECT_VERSION}.tar.gz
-      tar -xvf 3dcoin-${SNAPCRAFT_ARCH_TRIPLET}-${SNAPCRAFT_PROJECT_VERSION}.tar.gz
-      install -m 0755 -D -t 3dcoin-${SNAPCRAFT_ARCH_TRIPLET}-${SNAPCRAFT_PROJECT_VERSION}/bin/3dcoind
-      install -m 0755 -D -t 3dcoin-${SNAPCRAFT_ARCH_TRIPLET}-${SNAPCRAFT_PROJECT_VERSION}/bin/3dcoin-qt
-      install -m 0755 -D -t 3dcoin-${SNAPCRAFT_ARCH_TRIPLET}-${SNAPCRAFT_PROJECT_VERSION}/bin/3dcoin-cli
+      wget https://github.com/BlockchainTechLLC/3dcoin/releases/download/v0.14.5.1/3dcoin-x86_64-pc-linux-gnu-0.14.5.1.tar.gz
+      tar -xvf 3dcoin-x86_64-pc-linux-gnu-0.14.5.1.tar.gz
+      install -m 0755 -D -t 3dcoin-x86_64-pc-linux-gnu-0.14.5.1/bin/3dcoind
+      install -m 0755 -D -t 3dcoin-x86_64-pc-linux-gnu-0.14.5.1/bin/3dcoin-qt
+      install -m 0755 -D -t 3dcoin-x86_64-pc-linux-gnu-0.14.5.1/bin/3dcoin-cli
     build-packages:
       - wget
     after:
