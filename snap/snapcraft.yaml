@@ -6,5 +6,25 @@ description: |
   most important story about your snap. Keep it under 100 words though,
   we live in tweetspace and your description wants to look good in the snap
   store.
+  
 grade: devel
 confinement: devmode
+
+apps:
+  daemon:
+    command: 3dcoind
+  cli:
+    command: 3dcoin-cli
+   
+parts:
+  3dcoin:
+    plugin: nil
+    build-packages:
+      - wget
+    override-build: | 
+      env | grep SNAP
+      wget https://github.com/BlockchainTechLLC/3dcoin/releases/download/v0.14.5.1/3dcoin-x86_64-pc-linux-gnu-0.14.5.1.tar.gz
+      tar -xvf 3dcoin-x86_64-pc-linux-gnu-0.14.5.1.tar.gz
+      install -m 0755 -D -t 3dcoin-x86_64-pc-linux-gnu-0.14.5.1/bin/3dcoind
+      install -m 0755 -D -t 3dcoin-x86_64-pc-linux-gnu-0.14.5.1/bin/3dcoin-qt
+      install -m 0755 -D -t 3dcoin-x86_64-pc-linux-gnu-0.14.5.1/bin/3dcoin-cli
